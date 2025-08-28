@@ -33,13 +33,18 @@
 
   <main>
     <section id="trending">
-      <h2>🔥 Trending</h2>
-      <div id="trending-list" class="movie-list"></div>
+      <h2>🔥 TRENDING</h2>
+      <div id="trending-list" class="movie-row"></div>
     </section>
 
+    <div class="app-buttons">
+      <a href="https://www.youtube.com" target="_blank" class="app-btn">📺 YouTube</a>
+      <a href="https://www.tiktok.com" target="_blank" class="app-btn">🎵 TikTok</a>
+    </div>
+
     <section id="recent">
-      <h2>🆕 Recently Updated</h2>
-      <div id="recent-list" class="movie-list"></div>
+      <h2>🆕 RECENTLY UPDATED</h2>
+      <div id="recent-list" class="movie-grid"></div>
     </section>
   </main>
 
@@ -119,7 +124,6 @@
     document.getElementById('lang-filter').addEventListener('change', applyFilters);
     document.getElementById('quality-filter').addEventListener('change', applyFilters);
 
-    // ✅ Dark Mode Toggle
     document.getElementById('theme-toggle').addEventListener('click', () => {
       document.body.classList.toggle('dark');
     });
