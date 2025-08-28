@@ -88,8 +88,8 @@
         <div class="movie-card">
           <img src="${m.poster}" alt="${m.title}" class="poster">
           <h3>${m.title}</h3>
-          <p>Language: ${m.lang.join(", ")}</p>
-          <p>Quality: ${m.quality.join(", ")}</p>
+          <p>Language: ${Array.isArray(m.lang) ? m.lang.join(", ") : m.lang}</p>
+          <p>Quality: ${Array.isArray(m.quality) ? m.quality.join(", ") : m.quality}</p>
           <p>Updated: ${m.date}</p>
           <button class="watch-btn" onclick="openTrailer('${m.trailer}')">▶️ WATCH</button>
         </div>
@@ -106,4 +106,25 @@
       const selectedQuality = document.getElementById('quality-filter').value;
 
       const filtered = allMovies.filter(m => {
-        const matchesSearch = m.title.toLowerCase().includes(search
+        const titleMatch = m.title.toLowerCase().includes(searchText);
+        const langMatch = selectedLang === '' || (Array.isArray(m.lang) ? m.lang.includes(selectedLang) : m.lang === selectedLang);
+        const qualityMatch = selectedQuality === '' || (Array.isArray(m.quality) ? m.quality.includes(selectedQuality) : m.quality === selectedQuality);
+        return titleMatch && langMatch && qualityMatch;
+      });
+
+      renderMovies(filtered);
+    }
+
+    document.getElementById('search-box').addEventListener('input', applyFilters);
+    document.getElementById('lang-filter').addEventListener('change', applyFilters);
+    document.getElementById('quality-filter').addEventListener('change', applyFilters);
+
+    // ✅ Dark Mode Toggle
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+    });
+
+    loadMovies();
+  </script>
+</body>
+</html>
