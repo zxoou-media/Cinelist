@@ -100,9 +100,9 @@ input, select, button {
 /* RECENTLY UPDATED grid */
 #recent-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  padding: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  padding: 12px;
 }
 
 /* Movie Card for RECENT */
