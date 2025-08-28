@@ -39,19 +39,9 @@ function createMovieCard(m) {
   `;
 }
 
-// Trailer Modal Logic
+// ✅ Direct Link Open Instead of Modal
 function openTrailer(url) {
-  const modal = document.getElementById('trailer-modal');
-  const frame = document.getElementById('trailer-frame');
-  frame.src = url;
-  modal.style.display = 'flex';
+  window.open(url, '_blank');
 }
-
-document.getElementById('close-modal').onclick = () => {
-  const modal = document.getElementById('trailer-modal');
-  const frame = document.getElementById('trailer-frame');
-  frame.src = '';
-  modal.style.display = 'none';
-};
 
 loadMovies();
