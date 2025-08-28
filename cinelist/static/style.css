@@ -40,3 +40,18 @@ footer {
   padding: 10px;
   margin-top: 20px;
 }
+.watch-btn {
+  background-color: #ff3c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.watch-btn:hover {
+  background-color: #e60000;
+}
