@@ -51,34 +51,23 @@ input, select, button {
 #trending-list {
   display: flex;
   overflow-x: auto;
-  gap: 16px;
-  padding: 10px;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
+  gap: 16px;
+  padding: 12px;
 }
 
-#trending-list::-webkit-scrollbar {
-  height: 8px;
-}
-
-#trending-list::-webkit-scrollbar-thumb {
-  background: #ff4b2b;
-  border-radius: 4px;
-}
-
-/* Movie Card for TRENDING */
 .trending-card {
   flex: 0 0 calc(50% - 8px);
   scroll-snap-align: start;
   box-sizing: border-box;
+  min-width: 220px;
+  max-width: 240px;
   background: #fff;
   padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
   text-align: center;
-  min-width: 220px;
-  max-width: 240px;
-  flex-shrink: 0;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
 
 .trending-card img.poster {
@@ -87,10 +76,8 @@ input, select, button {
   object-fit: cover;
   border-radius: 6px;
   margin-bottom: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* Responsive: মোবাইলেও দুইটি poster একসাথে দেখাবে */
 @media (max-width: 600px) {
   .trending-card {
     flex: 0 0 calc(50% - 8px);
