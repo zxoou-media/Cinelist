@@ -34,7 +34,27 @@
   <main>
     <section id="trending">
       <h2>🔥 TRENDING</h2>
-      <div id="trending-list" class="movie-row"></div>
+      <div id="trending-list" class="movie-row">
+        <div class="trending-card">
+          <img src="poster1.jpg" alt="Movie Title 1" class="poster">
+          <h3>Movie Title 1</h3>
+          <p>Language: English, Hindi</p>
+          <p>Quality: 1080p</p>
+          <p>Updated: 2025-08-15</p>
+          <button class="watch-btn" onclick="openTrailer('https://youtube.com/trailer1')">▶️ WATCH</button>
+        </div>
+
+        <div class="trending-card">
+          <img src="poster2.jpg" alt="Movie Title 2" class="poster">
+          <h3>Movie Title 2</h3>
+          <p>Language: Bangla</p>
+          <p>Quality: 720p</p>
+          <p>Updated: 2025-08-14</p>
+          <button class="watch-btn" onclick="openTrailer('https://youtube.com/trailer2')">▶️ WATCH</button>
+        </div>
+
+        <!-- আরও movie cards এখানে যুক্ত করো -->
+      </div>
     </section>
 
     <div class="app-buttons">
@@ -60,10 +80,8 @@
         const res = await fetch('/api/movies');
         const data = await res.json();
 
-        const trendingWithCategory = data.trending.map(m => ({ ...m, category: 'trending' }));
         const recentWithCategory = data.recent.map(m => ({ ...m, category: 'recent' }));
-
-        allMovies = [...trendingWithCategory, ...recentWithCategory];
+        allMovies = [...recentWithCategory];
         renderMovies(allMovies);
       } catch (err) {
         console.error("Failed to load movies:", err);
@@ -71,17 +89,10 @@
     }
 
     function renderMovies(movies) {
-      const trending = document.getElementById('trending-list');
       const recent = document.getElementById('recent-list');
-      trending.innerHTML = '';
       recent.innerHTML = '';
 
-      const trendingData = movies.filter(m => m.category === 'trending');
       const recentData = movies.filter(m => m.category === 'recent');
-
-      trendingData.forEach(m => {
-        trending.innerHTML += createMovieCard(m);
-      });
 
       recentData.forEach(m => {
         recent.innerHTML += createMovieCard(m);
