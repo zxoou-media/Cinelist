@@ -9,7 +9,9 @@ async function loadMovies() {
         <h3>${m.title}</h3>
         <p>Language: ${m.lang.join(", ")}</p>
         <p>Quality: ${m.quality.join(", ")}</p>
-        <button onclick="openTrailer('${m.trailer}')" class="watch-btn">▶️ WATCH</button>
+        <a href="${m.trailer}" target="_blank">
+          <button class="watch-btn">▶️ WATCH</button>
+        </a>
       </div>
     `;
   });
@@ -21,7 +23,9 @@ async function loadMovies() {
         <h3>${m.title}</h3>
         <p>Language: ${m.lang.join(", ")}</p>
         <p>Quality: ${m.quality.join(", ")}</p>
-        <a href="${m.trailer}" target="_blank">▶ Watch Trailer</a>
+        <a href="${m.trailer}" target="_blank">
+          <button class="watch-btn">▶️ WATCH</button>
+        </a>
       </div>
     `;
   });
