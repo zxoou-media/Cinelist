@@ -47,22 +47,54 @@
     <p>© 2025 CineList — ওয়েবসাইট এর মালিক তানজিদুর রহমান জয় ভাই</p>
   </footer>
 
-  <!-- Trailer Modal -->
-  <div id="trailer-modal" class="modal">
-    <div class="modal-content">
-      <span id="close-modal">&times;</span>
-      <iframe
-        id="trailer-frame"
-        width="100%"
-        height="315"
-        src="https://www.youtube.com/embed/vB0V3iCSzQw?autoplay=1"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
-    </div>
-  </div>
+  <script>
+    let allMovies = [];
 
-  <script src="/static/script.js"></script>
+    async function loadMovies() {
+      try {
+        const res = await fetch('/api/movies');
+        const data = await res.json();
+        allMovies = [...data.trending, ...data.recent];
+        renderMovies(data.trending, data.recent);
+      } catch (err) {
+        console.error("Failed to load movies:", err);
+      }
+    }
+
+    function renderMovies(trendingData, recentData) {
+      const trending = document.getElementById('trending-list');
+      const recent = document.getElementById('recent-list');
+      trending.innerHTML = '';
+      recent.innerHTML = '';
+
+      trendingData.forEach(m => {
+        trending.innerHTML += createMovieCard(m);
+      });
+
+      recentData.forEach(m => {
+        recent.innerHTML += createMovieCard(m);
+      });
+    }
+
+    function createMovieCard(m) {
+      return `
+        <div class="movie-card">
+          <img src="${m.poster}" alt="${m.title}" class="poster">
+          <h3>${m.title}</h3>
+          <p>Language: ${m.lang.join(", ")}</p>
+          <p>Quality: ${m.quality.join(", ")}</p>
+          <p>Updated: ${m.date}</p>
+          <button class="watch-btn" onclick="openTrailer('${m.trailer}')">▶️ WATCH</button>
+        </div>
+      `;
+    }
+
+    // ✅ Direct YouTube Link Open
+    function openTrailer(url) {
+      window.open(url, '_blank');
+    }
+
+    loadMovies();
+  </script>
 </body>
 </html>
