@@ -14,7 +14,7 @@
       "quality": ["720p", "1080p"],
       "date": "2025-08-20",
       "trailer": "https://youtu.be/AZKbhA-n80c?si=gtUzYn_MEjoXcK8K",
-      "poster": "/static/img/bad-guys-2.jpg"
+      "poster": "https://images.pexels.com/photos/5869890/pexels-photo-5869890.jpeg"
     }
   ],
   "recent": [
@@ -24,7 +24,7 @@
       "quality": ["480p", "720p"],
       "date": "2025-08-26",
       "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
-      "poster": "/static/img/kingdom.jpg"
+      "poster": "https://images.pexels.com/photos/18386911/pexels-photo-18386911.jpeg"
     },
     {
       "title": "Dhumketu (2025)",
@@ -32,7 +32,7 @@
       "quality": ["720p"],
       "date": "2025-08-17",
       "trailer": "https://youtu.be/knGCfzm4jWs?si=POxf91G--H5G6kKX",
-      "poster": "/static/img/dhumketu.jpg"
+      "poster": "https://images.pexels.com/photos/12838778/pexels-photo-12838778.jpeg"
     }
   ]
 }
