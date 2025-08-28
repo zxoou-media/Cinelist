@@ -54,18 +54,25 @@
       try {
         const res = await fetch('/api/movies');
         const data = await res.json();
-        allMovies = [...data.trending, ...data.recent];
-        renderMovies(data.trending, data.recent);
+
+        const trendingWithCategory = data.trending.map(m => ({ ...m, category: 'trending' }));
+        const recentWithCategory = data.recent.map(m => ({ ...m, category: 'recent' }));
+
+        allMovies = [...trendingWithCategory, ...recentWithCategory];
+        renderMovies(allMovies);
       } catch (err) {
         console.error("Failed to load movies:", err);
       }
     }
 
-    function renderMovies(trendingData, recentData) {
+    function renderMovies(movies) {
       const trending = document.getElementById('trending-list');
       const recent = document.getElementById('recent-list');
       trending.innerHTML = '';
       recent.innerHTML = '';
+
+      const trendingData = movies.filter(m => m.category === 'trending');
+      const recentData = movies.filter(m => m.category === 'recent');
 
       trendingData.forEach(m => {
         trending.innerHTML += createMovieCard(m);
@@ -89,12 +96,14 @@
       `;
     }
 
-    // ✅ Direct YouTube Link Open
     function openTrailer(url) {
       window.open(url, '_blank');
     }
 
-    loadMovies();
-  </script>
-</body>
-</html>
+    function applyFilters() {
+      const searchText = document.getElementById('search-box').value.toLowerCase();
+      const selectedLang = document.getElementById('lang-filter').value;
+      const selectedQuality = document.getElementById('quality-filter').value;
+
+      const filtered = allMovies.filter(m => {
+        const matchesSearch = m.title.toLowerCase().includes(search
