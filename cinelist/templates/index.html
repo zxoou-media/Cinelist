@@ -7,30 +7,53 @@
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-  <header>
-    <h1>🎬 CineList</h1>
+  <header class="site-header">
+    <h1 id="site-title">🎬 CineList</h1>
     <nav>
       <a href="#">Home</a>
       <a href="#trending">Trending</a>
       <a href="#recent">Recently Updated</a>
     </nav>
+    <div class="filter-bar">
+      <input type="text" id="search-box" placeholder="🔍 Search movies..." />
+      <select id="lang-filter">
+        <option value="">All Languages</option>
+        <option value="English">English</option>
+        <option value="Hindi">Hindi</option>
+        <option value="Bangla">Bangla</option>
+      </select>
+      <select id="quality-filter">
+        <option value="">All Qualities</option>
+        <option value="720p">720p</option>
+        <option value="1080p">1080p</option>
+      </select>
+      <button id="theme-toggle">🌙 Toggle Dark Mode</button>
+    </div>
   </header>
 
   <main>
     <section id="trending">
       <h2>🔥 Trending</h2>
-      <div id="trending-list" class="movie-grid"></div>
+      <div id="trending-list" class="movie-list"></div>
     </section>
 
     <section id="recent">
       <h2>🆕 Recently Updated</h2>
-      <div id="recent-list" class="movie-grid"></div>
+      <div id="recent-list" class="movie-list"></div>
     </section>
   </main>
 
   <footer>
     <p>© 2025 CineList — ওয়েবসাইট এর মালিক তানজিদুর রহমান জয় ভাই</p>
   </footer>
+
+  <!-- Trailer Modal -->
+  <div id="trailer-modal" class="modal">
+    <div class="modal-content">
+      <span id="close-modal">&times;</span>
+      <iframe id="trailer-frame" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
 
   <script src="/static/script.js"></script>
 </body>
