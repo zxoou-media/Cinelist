@@ -1,3 +1,4 @@
+/* Base Styles */
 body {
   font-family: Arial, sans-serif;
   background: #f0f0f0;
@@ -50,9 +51,10 @@ input, select, button {
 #trending-list {
   display: flex;
   overflow-x: auto;
-  gap: 15px;
-  padding: 15px;
+  gap: 16px;
+  padding: 10px;
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
 
 #trending-list::-webkit-scrollbar {
@@ -65,25 +67,34 @@ input, select, button {
 }
 
 /* Movie Card for TRENDING */
-.movie-card {
-  min-width: 220px;
-  max-width: 240px;
-  flex-shrink: 0;
+.trending-card {
+  flex: 0 0 calc(50% - 8px);
   scroll-snap-align: start;
+  box-sizing: border-box;
   background: #fff;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.1);
   text-align: center;
+  min-width: 220px;
+  max-width: 240px;
+  flex-shrink: 0;
 }
 
-.movie-card img.poster {
+.trending-card img.poster {
   width: 100%;
   max-height: 300px;
   object-fit: cover;
   border-radius: 6px;
   margin-bottom: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Responsive: মোবাইলেও দুইটি poster একসাথে দেখাবে */
+@media (max-width: 600px) {
+  .trending-card {
+    flex: 0 0 calc(50% - 8px);
+  }
 }
 
 /* RECENTLY UPDATED grid */
@@ -94,16 +105,13 @@ input, select, button {
   padding: 15px;
 }
 
-/* Movie Card */
+/* Movie Card for RECENT */
 .movie-card {
   background: #fff;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.1);
   text-align: center;
-  scroll-snap-align: start;
-  min-width: 220px;
-  flex-shrink: 0;
 }
 
 .movie-card h3 {
@@ -175,7 +183,8 @@ body.dark header {
   background: linear-gradient(90deg, #333, #555);
 }
 
-.dark .movie-card {
+.dark .movie-card,
+.dark .trending-card {
   background-color: #1e1e1e;
   color: #fff;
 }
