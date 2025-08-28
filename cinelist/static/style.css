@@ -46,29 +46,42 @@ input, select, button {
   border: 1px solid #ccc;
 }
 
-/* TRENDING Row Layout */
-.movie-row {
+/* TRENDING horizontal scroll */
+#trending-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  overflow-x: auto;
+  gap: 15px;
   padding: 15px;
-  justify-content: center;
+  scroll-snap-type: x mandatory;
 }
 
-/* RECENTLY UPDATED Grid Layout */
-.movie-grid {
+#trending-list::-webkit-scrollbar {
+  height: 8px;
+}
+
+#trending-list::-webkit-scrollbar-thumb {
+  background: #ff4b2b;
+  border-radius: 4px;
+}
+
+/* RECENTLY UPDATED grid */
+#recent-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
   padding: 15px;
 }
 
+/* Movie Card */
 .movie-card {
   background: #fff;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.1);
   text-align: center;
+  scroll-snap-align: start;
+  min-width: 220px;
+  flex-shrink: 0;
 }
 
 .movie-card h3 {
@@ -148,4 +161,7 @@ body.dark header {
 .dark input,
 .dark select,
 .dark button {
-  background
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #666;
+}
