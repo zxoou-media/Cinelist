@@ -4,22 +4,28 @@
       "title": "TANZID VHI (2025)",
       "lang": ["English", "Hindi"],
       "quality": ["1080p"],
+      "genres": ["Crime", "Romance"],
+      "type": "Movie",
       "date": "2025-08-15",
       "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
       "poster": "https://i.imgur.com/wmRNvPj.jpeg"
     },
-{
+    {
       "title": "Ordinary Angels (2024)",
       "lang": ["English", "Hindi"],
       "quality": ["1080p"],
+      "genres": ["Crime", "Romance"],
+      "type": "Movie",
       "date": "2025-08-15",
       "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
       "poster": "https://i.imgur.com/dAnkgsc.jpeg"
     },
-{
+    {
       "title": "Ordinary Angels (2024)",
       "lang": ["English", "Hindi"],
       "quality": ["1080p"],
+      "genres": ["Crime", "Romance"],
+      "type": "Movie",
       "date": "2025-08-15",
       "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
       "poster": "https://i.imgur.com/qkm8Pml.jpeg"
@@ -28,6 +34,8 @@
       "title": "The Bad Guys 2 (2025)",
       "lang": ["English"],
       "quality": ["720p", "1080p"],
+      "genres": ["Crime", "Romance"],
+      "type": "Movie",
       "date": "2025-08-20",
       "trailer": "https://youtu.be/AZKbhA-n80c?si=gtUzYn_MEjoXcK8K",
       "poster": "https://images.pexels.com/photos/18386911/pexels-photo-18386911.jpeg"
@@ -38,38 +46,48 @@
       "title": "Bachelor Point S5 (2025)",
       "lang": ["Hindi", "Telugu"],
       "quality": ["480p", "720p"],
+      "genres": ["Crime", "Romance"],
+      "type": "Web Series",
       "date": "2025-08-26",
       "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
       "poster": "https://i.imgur.com/qkm8Pml.jpeg"
     },
-{
+    {
       "title": "Kingdom (2025)",
       "lang": ["Hindi", "Telugu"],
       "quality": ["480p", "720p"],
+      "genres": ["Crime", "Romance"],
+      "type": "Web Series",
       "date": "2025-08-26",
       "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
       "poster": "https://images.pexels.com/photos/18386911/pexels-photo-18386911.jpeg"
     },
-{
+    {
       "title": "Kingdom (2025)",
       "lang": ["Hindi", "Telugu"],
       "quality": ["480p", "720p"],
+      "genres": ["Crime", "Romance"],
+      "type": "Web Series",
       "date": "2025-08-26",
       "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
       "poster": "https://images.pexels.com/photos/18386911/pexels-photo-18386911.jpeg"
     },
-{
+    {
       "title": "Kingdom (2025)",
       "lang": ["Hindi", "Telugu"],
       "quality": ["480p", "720p"],
+      "genres": ["Crime", "Romance"],
+      "type": "Web Series",
       "date": "2025-08-26",
       "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
       "poster": "https://images.pexels.com/photos/18386911/pexels-photo-18386911.jpeg"
     },
-{
+    {
       "title": "Kingdom (2025)",
       "lang": ["Hindi", "Telugu"],
       "quality": ["480p", "720p"],
+      "genres": ["Crime", "Romance"],
+      "type": "Web Series",
       "date": "2025-08-26",
       "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
       "poster": "https://images.pexels.com/photos/18386911/pexels-photo-18386911.jpeg"
@@ -78,6 +96,8 @@
       "title": "Dhumketu (2025)",
       "lang": ["Bangla"],
       "quality": ["720p"],
+      "genres": ["Crime", "Romance"],
+      "type": "Movie",
       "date": "2025-08-17",
       "trailer": "https://youtu.be/knGCfzm4jWs?si=POxf91G--H5G6kKX",
       "poster": "https://images.pexels.com/photos/12838778/pexels-photo-12838778.jpeg"
