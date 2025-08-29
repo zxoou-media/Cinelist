@@ -1,73 +1,80 @@
-let movies = [];
+<script>
+let allMovies = [];
 
-// Load JSON data
-fetch('/cinelist/data/movies.json')
-  .then(res => res.json())
-  .then(data => {
-    movies = data;
-    renderAllSections();
-  })
-  .catch(err => console.error("JSON fetch error:", err));
+async function loadMovies() {
+  try {
+    const res = await fetch('/api/movies');
+    const data = await res.json();
 
-// Create individual movie card
-function createMovieCard(movie) {
-  const card = document.createElement("div");
-  card.className = "movie-card";
+    const trendingWithCategory = data.trending.map(m => ({ ...m, category: 'trending' }));
+    const recentWithCategory = data.recent.map(m => ({ ...m, category: 'recent' }));
 
-  const poster = document.createElement("img");
-  poster.src = movie.poster || "fallback.jpg";
-  poster.alt = movie.title || "Untitled";
-  poster.onclick = () => window.open(movie.link, "_blank");
+    allMovies = [...trendingWithCategory, ...recentWithCategory];
+    renderMovies(allMovies);
+  } catch (err) {
+    console.error("Failed to load movies:", err);
+  }
+}
 
-  const title = document.createElement("h3");
-  title.textContent = movie.title || "Untitled";
+function renderMovies(movies) {
+  const trending = document.getElementById('trending-list');
+  const recent = document.getElementById('recent-list');
+  trending.innerHTML = '';
+  recent.innerHTML = '';
 
-  const watchBtn = document.createElement("button");
-  watchBtn.textContent = "▶ Watch Now";
-  watchBtn.onclick = () => window.open(movie.link, "_blank");
+  const trendingData = movies.filter(m => m.category === 'trending');
+  const recentData = movies.filter(m => m.category === 'recent');
 
-  card.appendChild(poster);
-  card.appendChild(title);
-  card.appendChild(watchBtn);
+  trendingData.forEach(m => {
+    trending.appendChild(createMovieCardElement(m));
+  });
+
+  recentData.forEach(m => {
+    recent.appendChild(createMovieCardElement(m));
+  });
+}
+
+function createMovieCardElement(m) {
+  const card = document.createElement('div');
+  card.className = 'movie-card';
+
+  card.innerHTML = `
+    <img src="${m.poster}" alt="${m.title}" class="poster">
+    <h3>${m.title}</h3>
+    <p>Language: ${Array.isArray(m.lang) ? m.lang.join(", ") : m.lang}</p>
+    <p>Quality: ${Array.isArray(m.quality) ? m.quality.join(", ") : m.quality}</p>
+    <p>Updated: ${m.date}</p>
+    <button class="watch-btn">▶️ WATCH</button>
+  `;
+
+  card.querySelector('.watch-btn').addEventListener('click', () => {
+    window.open(m.trailer, '_blank');
+  });
 
   return card;
 }
 
-// Render all category sections
-function renderAllSections() {
-  const sections = {
-    trending: "Trending",
-    recent: "Recently Updated",
-    natok: "Bangla Natok",
-    webSeries: "Web Series",
-    netflix: "Netflix",
-    korean: "Korean",
-    anime: "Anime"
-  };
+function applyFilters() {
+  const searchText = document.getElementById('search-box').value.toLowerCase();
+  const selectedLang = document.getElementById('lang-filter').value;
+  const selectedQuality = document.getElementById('quality-filter').value;
 
-  Object.entries(sections).forEach(([id, category]) => {
-    const container = document.getElementById(`${id}-list`);
-    if (!container) return;
-
-    container.innerHTML = ""; // Clear previous content
-    const filtered = movies.filter(m => m.category === category);
-    filtered.forEach(movie => container.appendChild(createMovieCard(movie)));
+  const filtered = allMovies.filter(m => {
+    const titleMatch = m.title.toLowerCase().includes(searchText);
+    const langMatch = selectedLang === '' || (Array.isArray(m.lang) ? m.lang.includes(selectedLang) : m.lang === selectedLang);
+    const qualityMatch = selectedQuality === '' || (Array.isArray(m.quality) ? m.quality.includes(selectedQuality) : m.quality === selectedQuality);
+    return titleMatch && langMatch && qualityMatch;
   });
+
+  renderMovies(filtered);
 }
 
-// Search functionality
-document.getElementById("search-box").addEventListener("input", e => {
-  const query = e.target.value.toLowerCase();
-
-  // Clear all sections before showing search results
-  const allContainers = document.querySelectorAll(".movie-grid, .scroll-row, .grid-2");
-  allContainers.forEach(container => container.innerHTML = "");
-
-  const filtered = movies.filter(m =>
-    m.title.toLowerCase().includes(query)
-  );
-
-  // Show search results in trending-list or a dedicated container
-  const searchContainer = document.getElementById("trending-list");
-  filtered.forEach(movie => searchContainer.appendChild(createMovieCard(movie)));
+document.getElementById('search-box').addEventListener('input', applyFilters);
+document.getElementById('lang-filter').addEventListener('change', applyFilters);
+document.getElementById('quality-filter').addEventListener('change', applyFilters);
+document.getElementById('theme-toggle').addEventListener('click', () => {
+  document.body.classList.toggle('dark');
 });
+
+loadMovies();
+</script>
