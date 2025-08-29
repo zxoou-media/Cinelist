@@ -1,21 +1,23 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #f0f0f0;
+  background-color: #121212;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
 }
 
 header {
-  background: linear-gradient(90deg, #ff4b2b, #ff416c);
-  color: #fff;
-  padding: 15px;
+  padding: 20px;
   text-align: center;
 }
 
-nav a {
-  color: #fff;
-  margin: 0 10px;
-  text-decoration: none;
+input#search-box {
+  width: 80%;
+  padding: 10px;
+  margin: 10px auto;
+  display: block;
+  border-radius: 6px;
+  border: none;
 }
 
 .filter-bar {
@@ -23,104 +25,73 @@ nav a {
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
-input, select, button {
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-#trending-list {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  gap: 16px;
-  padding: 12px;
-}
-
-.trending-card {
-  flex: 0 0 calc(50% - 8px);
-  scroll-snap-align: start;
-  min-width: 220px;
-  max-width: 240px;
-  background: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-}
-
-.trending-card img,
-.movie-card img {
-  width: 100%;
-  aspect-ratio: 2 / 3;
-  object-fit: cover;
-  border-radius: 6px;
-  margin-bottom: 10px;
+.filter-group button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-#recent-list {
+section {
+  padding: 20px;
+}
+
+.scroll-row {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+}
+
+.grid-2 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 16px;
-  padding: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
 }
 
 .movie-card {
-  background: #fff;
-  padding: 15px;
+  background-color: #1e1e1e;
+  padding: 10px;
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
 
-.watch-btn {
-  background-color: #ff3c3c;
-  color: white;
-  border: none;
-  padding: 8px 16px;
+.movie-card img {
+  width: 100%;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
+  transition: transform 0.3s;
+}
+
+.movie-card img:hover {
+  transform: scale(1.05);
+}
+
+.movie-card button {
+  margin-top: 8px;
+  padding: 6px 12px;
+  background-color: #e50914;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.external-links a {
+  margin-right: 10px;
+  background: #444;
+  padding: 6px 10px;
+  border-radius: 4px;
+  color: white;
   text-decoration: none;
-  display: inline-block;
-}
-
-.watch-btn:hover {
-  background-color: #e60000;
-}
-
-footer {
-  text-align: center;
-  background: #222;
-  color: #fff;
-  padding: 10px;
-  margin-top: 20px;
-}
-
-body.dark {
-  background-color: #121212;
-  color: #f0f0f0;
-}
-
-body.dark header {
-  background: linear-gradient(90deg, #333, #555);
-}
-
-.dark .movie-card,
-.dark .trending-card {
-  background-color: #1e1e1e;
-  color: #fff;
-}
-
-.dark input,
-.dark select,
-.dark button {
-  background-color: #333;
-  color: #fff;
-  border: 1px solid #666;
 }
