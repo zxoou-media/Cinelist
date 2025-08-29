@@ -1,82 +1,86 @@
-[
-  {
-    "title": "Antarjal",
-    "language": "Bangla",
-    "quality": "1080p",
-    "genre": "Drama",
-    "category": "Trending",
-    "type": "Bangla",
-    "poster": "https://i.imgur.com/wmRNvPj.jpeg",
-    "link": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d"
-  },
-  {
-    "title": "Squid Game",
-    "language": "Korean",
-    "quality": "4k",
-    "genre": "Thriller",
-    "category": "Trending",
-    "type": "Web Series",
-    "poster": "https://yourcdn.com/posters/squidgame.jpg",
-    "link": "https://netflix.com/squidgame"
-  },
-  {
-    "title": "Pathaan",
-    "language": "Hindi",
-    "quality": "1080p",
-    "genre": "Action",
-    "category": "Recently Updated",
-    "type": "Hindi",
-    "poster": "https://i.imgur.com/dAnkgsc.jpeg",
-    "link": "https://youtu.be/AZKbhA-n80c?si=gtUzYn_MEjoXcK8K"
-  },
-  {
-    "title": "Jawan",
-    "language": "Hindi",
-    "quality": "720p",
-    "genre": "Thriller",
-    "category": "Trending",
-    "type": "Hindi",
-    "poster": "https://yourcdn.com/posters/jawan.jpg",
-    "link": "https://youtube.com/watch?v=jawan"
-  },
-  {
-    "title": "Naruto",
-    "language": "Japanese",
-    "quality": "1080p",
-    "genre": "Anime",
-    "category": "Anime",
-    "type": "Japanese",
-    "poster": "https://yourcdn.com/posters/naruto.jpg",
-    "link": "https://crunchyroll.com/naruto"
-  },
-  {
-    "title": "Punorjonmo",
-    "language": "Bangla",
-    "quality": "720p",
-    "genre": "Crime",
-    "category": "Bangla Natok",
-    "type": "Bangla",
-    "poster": "https://yourcdn.com/posters/punorjonmo.jpg",
-    "link": "https://youtube.com/watch?v=punorjonmo"
-  },
-  {
-    "title": "Money Heist",
-    "language": "Spanish",
-    "quality": "1080p",
-    "genre": "Crime",
-    "category": "Web Series",
-    "type": "Web Series",
-    "poster": "https://yourcdn.com/posters/moneyheist.jpg",
-    "link": "https://netflix.com/moneyheist"
-  },
-  {
-    "title": "Avengers: Endgame",
-    "language": "English",
-    "quality": "4k",
-    "genre": "Sci-Fi",
-    "category": "Netflix",
-    "type": "Marvel",
-    "poster": "https://yourcdn.com/posters/endgame.jpg",
-    "link": "https://disneyplus.com/endgame"
-  }
-]
+{
+  "trending": [
+    {
+      "title": "TANZID VHI (2025)",
+      "lang": ["English", "Hindi"],
+      "quality": ["1080p"],
+      "date": "2025-08-15",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "poster": "https://i.imgur.com/wmRNvPj.jpeg"
+    },
+{
+      "title": "Ordinary Angels (2024)",
+      "lang": ["English", "Hindi"],
+      "quality": ["1080p"],
+      "date": "2025-08-15",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "poster": "https://i.imgur.com/dAnkgsc.jpeg"
+    },
+{
+      "title": "Ordinary Angels (2024)",
+      "lang": ["English", "Hindi"],
+      "quality": ["1080p"],
+      "date": "2025-08-15",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "poster": "https://i.imgur.com/qkm8Pml.jpeg"
+    },
+    {
+      "title": "The Bad Guys 2 (2025)",
+      "lang": ["English"],
+      "quality": ["720p", "1080p"],
+      "date": "2025-08-20",
+      "trailer": "https://youtu.be/AZKbhA-n80c?si=gtUzYn_MEjoXcK8K",
+      "poster": "https://images.pexels.com/photos/18386911/pexels-photo-18386911.jpeg"
+    }
+  ],
+  "recent": [
+    {
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Telugu"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.imgur.com/qkm8Pml.jpeg"
+    },
+{
+      "title": "Kingdom (2025)",
+      "lang": ["Hindi", "Telugu"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://images.pexels.com/photos/18386911/pexels-photo-18386911.jpeg"
+    },
+{
+      "title": "Kingdom (2025)",
+      "lang": ["Hindi", "Telugu"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://images.pexels.com/photos/18386911/pexels-photo-18386911.jpeg"
+    },
+{
+      "title": "Kingdom (2025)",
+      "lang": ["Hindi", "Telugu"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://images.pexels.com/photos/18386911/pexels-photo-18386911.jpeg"
+    },
+{
+      "title": "Kingdom (2025)",
+      "lang": ["Hindi", "Telugu"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://images.pexels.com/photos/18386911/pexels-photo-18386911.jpeg"
+    },
+    {
+      "title": "Dhumketu (2025)",
+      "lang": ["Bangla"],
+      "quality": ["720p"],
+      "date": "2025-08-17",
+      "trailer": "https://youtu.be/knGCfzm4jWs?si=POxf91G--H5G6kKX",
+      "poster": "https://images.pexels.com/photos/12838778/pexels-photo-12838778.jpeg"
+    }
+  ]
+}
