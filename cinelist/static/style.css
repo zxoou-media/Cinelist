@@ -85,59 +85,32 @@ input, select, button {
 }
 
 /* RECENTLY UPDATED grid */
-.recently-updated {
+#recent-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1rem;
-  padding: 1rem;
-  max-width: 100%;
-  box-sizing: border-box;
+  gap: 16px;
+  padding: 12px;
 }
 
-/* Individual Movie Card */
+/* Movie Card for RECENT */
 .movie-card {
-  background-color: #fff;
+  background: #fff;
+  padding: 15px;
   border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem;
-  word-wrap: break-word;
-  white-space: normal;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
   text-align: center;
 }
 
-/* Poster Image */
-.movie-card img {
+.movie-card h3 {
+  margin: 5px 0;
+}
+
+.movie-card img.poster {
   width: 100%;
   height: auto;
-  border-radius: 4px;
-  object-fit: cover;
+  border-radius: 6px;
   margin-bottom: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-/* Movie Title */
-.movie-title {
-  font-size: clamp(14px, 2vw, 16px);
-  font-weight: bold;
-  margin: 0.5rem 0 0.25rem;
-  color: #d32f2f;
-}
-
-/* Movie Info Text */
-.movie-info {
-  font-size: clamp(12px, 1.5vw, 14px);
-  margin: 0.1rem 0;
-  color: #333;
-}
-
-/* Responsive Fix for Desktop Mode on Mobile */
-@media (min-width: 768px) {
-  .recently-updated {
-    grid-template-columns: repeat(4, 1fr);
-  }
 }
 
 /* Watch Button */
