@@ -1,97 +1,185 @@
+/* Base Styles */
 body {
-  background-color: #121212;
-  color: #fff;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: Arial, sans-serif;
+  background: #f0f0f0;
   margin: 0;
   padding: 0;
 }
 
-header {
-  padding: 20px;
+h2 {
+  margin: 20px;
   text-align: center;
 }
 
-input#search-box {
-  width: 80%;
-  padding: 10px;
-  margin: 10px auto;
-  display: block;
-  border-radius: 6px;
-  border: none;
+/* Header */
+header {
+  background: linear-gradient(90deg, #ff4b2b, #ff416c);
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+header nav {
+  margin-bottom: 10px;
+}
+
+header nav a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
 }
 
 .filter-bar {
   display: flex;
+  gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
 }
 
-.filter-group button {
-  background-color: #333;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
+input, select, button {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
-section {
-  padding: 20px;
-}
-
-.scroll-row {
+/* TRENDING horizontal scroll */
+#trending-list {
   display: flex;
   overflow-x: auto;
-  gap: 10px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: 16px;
+  padding: 12px;
 }
 
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 15px;
-}
-
-.movie-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 12px;
-}
-
-.movie-card {
-  background-color: #1e1e1e;
-  padding: 10px;
+.trending-card {
+  flex: 0 0 calc(50% - 8px);
+  scroll-snap-align: start;
+  box-sizing: border-box;
+  min-width: 220px;
+  max-width: 240px;
+  background: #fff;
+  padding: 15px;
   border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.trending-card img.poster {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+  .trending-card {
+    flex: 0 0 calc(50% - 8px);
+  }
+}
+
+/* RECENTLY UPDATED grid */
+#recent-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  padding: 12px;
+}
+
+/* Movie Card for RECENT */
+.movie-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
   text-align: center;
 }
 
-.movie-card img {
+.movie-card h3 {
+  margin: 5px 0;
+}
+
+.movie-card img.poster {
   width: 100%;
+  height: auto;
   border-radius: 6px;
-  cursor: pointer;
-  transition: transform 0.3s;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.movie-card img:hover {
-  transform: scale(1.05);
-}
-
-.movie-card button {
-  margin-top: 8px;
-  padding: 6px 12px;
-  background-color: #e50914;
+/* Watch Button */
+.watch-btn {
+  background-color: #ff3c3c;
   color: white;
   border: none;
-  border-radius: 4px;
+  padding: 8px 16px;
+  border-radius: 6px;
   cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background 0.3s;
 }
 
-.external-links a {
-  margin-right: 10px;
-  background: #444;
-  padding: 6px 10px;
-  border-radius: 4px;
-  color: white;
+.watch-btn:hover {
+  background-color: #e60000;
+}
+
+/* App Buttons */
+.app-buttons {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.app-btn {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 6px;
   text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.app-btn:hover {
+  background-color: #555;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  background: #222;
+  color: #fff;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+/* Dark Mode */
+body.dark {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+body.dark header {
+  background: linear-gradient(90deg, #333, #555);
+}
+
+.dark .movie-card,
+.dark .trending-card {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+.dark input,
+.dark select,
+.dark button {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #666;
 }
