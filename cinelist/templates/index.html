@@ -7,8 +7,8 @@
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-  <header class="site-header">
-    <h1 id="site-title">🎬 CineList</h1>
+  <header>
+    <h1>🎬 CineList</h1>
     <nav>
       <a href="#">Home</a>
       <a href="#trending">Trending</a>
@@ -16,17 +16,8 @@
     </nav>
     <div class="filter-bar">
       <input type="text" id="search-box" placeholder="🔍 Search movies..." />
-      <select id="lang-filter">
-        <option value="">All Languages</option>
-        <option value="English">English</option>
-        <option value="Hindi">Hindi</option>
-        <option value="Bangla">Bangla</option>
-      </select>
-      <select id="quality-filter">
-        <option value="">All Qualities</option>
-        <option value="720p">720p</option>
-        <option value="1080p">1080p</option>
-      </select>
+      <select id="lang-filter"><option value="">All Languages</option></select>
+      <select id="quality-filter"><option value="">All Qualities</option></select>
       <button id="theme-toggle">🌙 Toggle Dark Mode</button>
     </div>
   </header>
@@ -34,103 +25,19 @@
   <main>
     <section id="trending">
       <h2>🔥 TRENDING</h2>
-      <div id="trending-list" class="movie-row"></div>
+      <div id="trending-list"></div>
     </section>
-
-    <div class="app-buttons">
-      <a href="https://www.youtube.com" target="_blank" class="app-btn">📺 YouTube</a>
-      <a href="https://www.tiktok.com" target="_blank" class="app-btn">🎵 TikTok</a>
-    </div>
 
     <section id="recent">
       <h2>🆕 RECENTLY UPDATED</h2>
-      <div id="recent-list" class="movie-grid"></div>
+      <div id="recent-list"></div>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 CineList — ওয়েবসাইট এর মালিক তানজিদুর রহমান জয় ভাই</p>
+    <p>© 2025 CineList — মালিক: তানজিদুর রহমান জয় ভাই</p>
   </footer>
 
-  <script>
-    let allMovies = [];
-
-    async function loadMovies() {
-      try {
-        const res = await fetch('/api/movies');
-        const data = await res.json();
-
-        const trendingWithCategory = data.trending.map(m => ({ ...m, category: 'trending' }));
-        const recentWithCategory = data.recent.map(m => ({ ...m, category: 'recent' }));
-
-        allMovies = [...trendingWithCategory, ...recentWithCategory];
-        renderMovies(allMovies);
-      } catch (err) {
-        console.error("Failed to load movies:", err);
-      }
-    }
-
-    function renderMovies(movies) {
-      const trending = document.getElementById('trending-list');
-      const recent = document.getElementById('recent-list');
-      trending.innerHTML = '';
-      recent.innerHTML = '';
-
-      const trendingData = movies.filter(m => m.category === 'trending');
-      const recentData = movies.filter(m => m.category === 'recent');
-
-      trendingData.forEach(m => {
-        trending.appendChild(createMovieCardElement(m, 'trending-card'));
-      });
-
-      recentData.forEach(m => {
-        recent.appendChild(createMovieCardElement(m, 'movie-card'));
-      });
-    }
-
-    function createMovieCardElement(m, cardClass) {
-      const card = document.createElement('div');
-      card.className = cardClass;
-
-      card.innerHTML = `
-        <img src="${m.poster}" alt="${m.title}" class="poster">
-        <h3>${m.title}</h3>
-        <p>Language: ${Array.isArray(m.lang) ? m.lang.join(", ") : m.lang}</p>
-        <p>Quality: ${Array.isArray(m.quality) ? m.quality.join(", ") : m.quality}</p>
-        <p>Updated: ${m.date}</p>
-        <button class="watch-btn">▶️ WATCH</button>
-      `;
-
-      card.querySelector('.watch-btn').addEventListener('click', () => {
-        window.open(m.trailer, '_blank');
-      });
-
-      return card;
-    }
-
-    function applyFilters() {
-      const searchText = document.getElementById('search-box').value.toLowerCase();
-      const selectedLang = document.getElementById('lang-filter').value;
-      const selectedQuality = document.getElementById('quality-filter').value;
-
-      const filtered = allMovies.filter(m => {
-        const titleMatch = m.title.toLowerCase().includes(searchText);
-        const langMatch = selectedLang === '' || (Array.isArray(m.lang) ? m.lang.includes(selectedLang) : m.lang === selectedLang);
-        const qualityMatch = selectedQuality === '' || (Array.isArray(m.quality) ? m.quality.includes(selectedQuality) : m.quality === selectedQuality);
-        return titleMatch && langMatch && qualityMatch;
-      });
-
-      renderMovies(filtered);
-    }
-
-    document.getElementById('search-box').addEventListener('input', applyFilters);
-    document.getElementById('lang-filter').addEventListener('change', applyFilters);
-    document.getElementById('quality-filter').addEventListener('change', applyFilters);
-    document.getElementById('theme-toggle').addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-    });
-
-    loadMovies();
-  </script>
+  <script src="/static/script.js"></script>
 </body>
 </html>
