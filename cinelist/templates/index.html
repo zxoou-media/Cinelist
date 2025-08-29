@@ -1,36 +1,101 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CineList 🎬</title>
-  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>🎬 CineList</h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#trending">Trending</a>
-      <a href="#recent">Recently Updated</a>
-    </nav>
+    <h1>CineList 🎬</h1>
+    <input type="text" id="search-box" placeholder="Search by title, language, genre, quality, type..." />
     <div class="filter-bar">
-      <input type="text" id="search-box" placeholder="🔍 Search movies..." />
-      <select id="lang-filter"><option value="">All Languages</option></select>
-      <select id="quality-filter"><option value="">All Qualities</option></select>
-      <button id="theme-toggle">🌙 Toggle Dark Mode</button>
+      <!-- Quality -->
+      <div class="filter-group" id="quality-filter-btns">
+        <button data-quality="720p">720p</button>
+        <button data-quality="1080p">1080p</button>
+        <button data-quality="4k">4K</button>
+      </div>
+      <!-- Language -->
+      <div class="filter-group" id="language-filter-btns">
+        <button data-language="Bangla">Bangla</button>
+        <button data-language="English">English</button>
+        <button data-language="Hindi">Hindi</button>
+        <button data-language="Telugu">Telugu</button>
+        <button data-language="Japanese">Japanese</button>
+        <button data-language="Korean">Korean</button>
+      </div>
+      <!-- Genre -->
+      <div class="filter-group" id="genre-filter-btns">
+        <button data-genre="Crime">Crime</button>
+        <button data-genre="Drama">Drama</button>
+        <button data-genre="Romance">Romance</button>
+        <button data-genre="Horror">Horror</button>
+        <button data-genre="Sci-Fi">Sci-Fi</button>
+      </div>
+      <!-- Category -->
+      <div class="filter-group" id="category-filter-btns">
+        <button data-category="Trending">Trending</button>
+        <button data-category="Web Series">Web Series</button>
+        <button data-category="Latest Movie">Latest Movie</button>
+        <button data-category="Recently Updated">Recently Updated</button>
+        <button data-category="Netflix">Netflix</button>
+        <button data-category="Bangla Natok">Bangla Natok</button>
+      </div>
+      <!-- Type -->
+      <div class="filter-group" id="type-filter-btns">
+        <button data-type="Bangla">Bangla</button>
+        <button data-type="Hindi">Hindi</button>
+        <button data-type="Korean">Korean</button>
+        <button data-type="Japanese">Japanese</button>
+        <button data-type="Telugu">Telugu</button>
+        <button data-type="Web Series">Web Series</button>
+        <button data-type="English">English</button>
+        <button data-type="Marvel">Marvel</button>
+        <button data-type="Netflix">Netflix</button>
+      </div>
     </div>
   </header>
 
   <main>
     <section id="trending">
       <h2>🔥 TRENDING</h2>
-      <div id="trending-list"></div>
+      <div id="trending-list" class="scroll-row"></div>
     </section>
 
     <section id="recent">
       <h2>🆕 RECENTLY UPDATED</h2>
-      <div id="recent-list"></div>
+      <div class="external-links">
+        <a href="https://youtube.com" target="_blank">YouTube</a>
+        <a href="https://tiktok.com" target="_blank">TikTok</a>
+      </div>
+      <div id="recent-list" class="grid-2"></div>
+    </section>
+
+    <section id="natok">
+      <h2>📺 BANGLA NATOK</h2>
+      <div id="natok-list" class="movie-grid"></div>
+    </section>
+
+    <section id="web-series">
+      <h2>🎞️ WEB SERIES</h2>
+      <div id="web-series-list" class="movie-grid"></div>
+    </section>
+
+    <section id="netflix">
+      <h2>🎬 NETFLIX</h2>
+      <div id="netflix-list" class="movie-grid"></div>
+    </section>
+
+    <section id="korean">
+      <h2>🇰🇷 KOREAN DRAMA</h2>
+      <div id="korean-list" class="movie-grid"></div>
+    </section>
+
+    <section id="anime">
+      <h2>🧠 ANIME</h2>
+      <div id="anime-list" class="movie-grid"></div>
     </section>
   </main>
 
@@ -38,6 +103,6 @@
     <p>© 2025 CineList — মালিক: তানজিদুর রহমান জয় ভাই</p>
   </footer>
 
-  <script src="/static/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
