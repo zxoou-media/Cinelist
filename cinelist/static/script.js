@@ -2,17 +2,23 @@ let allMovies = [];
 
 async function loadMovies() {
   try {
-    const res = await fetch('/data/movies.json');
+    const res = await fetch('/api/movies'); // ✅ Updated path
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
     const data = await res.json();
 
-    const trending = data.trending.map(m => ({ ...m, category: 'trending' }));
-    const recent = data.recent.map(m => ({ ...m, category: 'recent' }));
+    const trending = Array.isArray(data.trending)
+      ? data.trending.map(m => ({ ...m, category: 'trending' }))
+      : [];
+
+    const recent = Array.isArray(data.recent)
+      ? data.recent.map(m => ({ ...m, category: 'recent' }))
+      : [];
 
     allMovies = [...trending, ...recent];
     renderMovies(allMovies);
     populateFilters();
   } catch (err) {
-    console.error("Failed to load movies:", err);
+    console.error("❌ Failed to load movies:", err);
   }
 }
 
@@ -31,11 +37,11 @@ function renderMovies(movies) {
         <img src="${m.poster}" alt="${m.title}">
       </a>
       <h3>${m.title}</h3>
-      <p>Genres: ${m.genres.join(', ')}</p>
-      <p>Type: ${m.type}</p>
-      <p>Language: ${m.lang.join(', ')}</p>
-      <p>Quality: ${m.quality.join(', ')}</p>
-      <p>Updated: ${m.date}</p>
+      <p>Genres: ${Array.isArray(m.genres) ? m.genres.join(', ') : 'N/A'}</p>
+      <p>Type: ${m.type || 'N/A'}</p>
+      <p>Language: ${Array.isArray(m.lang) ? m.lang.join(', ') : 'N/A'}</p>
+      <p>Quality: ${Array.isArray(m.quality) ? m.quality.join(', ') : 'N/A'}</p>
+      <p>Updated: ${m.date || 'N/A'}</p>
       <a href="${m.trailer}" target="_blank" class="watch-btn">▶️ WATCH</a>
     `;
 
@@ -49,12 +55,15 @@ function populateFilters() {
   const qualitySet = new Set();
 
   allMovies.forEach(m => {
-    m.lang.forEach(l => langSet.add(l));
-    m.quality.forEach(q => qualitySet.add(q));
+    (m.lang || []).forEach(l => langSet.add(l));
+    (m.quality || []).forEach(q => qualitySet.add(q));
   });
 
   const langFilter = document.getElementById('lang-filter');
   const qualityFilter = document.getElementById('quality-filter');
+
+  langFilter.innerHTML = '<option value="">All</option>';
+  qualityFilter.innerHTML = '<option value="">All</option>';
 
   langSet.forEach(l => {
     const opt = document.createElement('option');
@@ -77,9 +86,9 @@ function applyFilters() {
   const selectedQuality = document.getElementById('quality-filter').value;
 
   const filtered = allMovies.filter(m => {
-    const titleMatch = m.title.toLowerCase().includes(searchText);
-    const langMatch = !selectedLang || m.lang.includes(selectedLang);
-    const qualityMatch = !selectedQuality || m.quality.includes(selectedQuality);
+    const titleMatch = m.title?.toLowerCase().includes(searchText);
+    const langMatch = !selectedLang || (m.lang || []).includes(selectedLang);
+    const qualityMatch = !selectedQuality || (m.quality || []).includes(selectedQuality);
     return titleMatch && langMatch && qualityMatch;
   });
 
