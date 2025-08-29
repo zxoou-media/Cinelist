@@ -1,111 +1,57 @@
-let allMovies = [];
+let movies = [];
 
-async function loadMovies() {
-  try {
-    const res = await fetch('/api/movies'); // ✅ Updated path
-    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-    const data = await res.json();
+fetch('movies.json')
+  .then(res => res.json())
+  .then(data => {
+    movies = data;
+    renderAllSections();
+  });
 
-    const trending = Array.isArray(data.trending)
-      ? data.trending.map(m => ({ ...m, category: 'trending' }))
-      : [];
+function createMovieCard(movie) {
+  const card = document.createElement("div");
+  card.className = "movie-card";
 
-    const recent = Array.isArray(data.recent)
-      ? data.recent.map(m => ({ ...m, category: 'recent' }))
-      : [];
+  const poster = document.createElement("img");
+  poster.src = movie.poster;
+  poster.alt = movie.title;
+  poster.onclick = () => window.open(movie.link, "_blank");
 
-    allMovies = [...trending, ...recent];
-    renderMovies(allMovies);
-    populateFilters();
-  } catch (err) {
-    console.error("❌ Failed to load movies:", err);
-  }
+  const title = document.createElement("h3");
+  title.textContent = movie.title;
+
+  const watchBtn = document.createElement("button");
+  watchBtn.textContent = "▶ Watch Now";
+  watchBtn.onclick = () => window.open(movie.link, "_blank");
+
+  card.appendChild(poster);
+  card.appendChild(title);
+  card.appendChild(watchBtn);
+
+  return card;
 }
 
-function renderMovies(movies) {
-  const trendingList = document.getElementById('trending-list');
-  const recentList = document.getElementById('recent-list');
-  trendingList.innerHTML = '';
-  recentList.innerHTML = '';
+function renderAllSections() {
+  const sections = {
+    trending: "Trending",
+    recent: "Recently Updated",
+    natok: "Bangla Natok",
+    webSeries: "Web Series",
+    netflix: "Netflix",
+    korean: "Korean",
+    anime: "Anime"
+  };
 
-  movies.forEach(m => {
-    const card = document.createElement('div');
-    card.className = m.category === 'trending' ? 'trending-card' : 'movie-card';
-
-    card.innerHTML = `
-      <a href="${m.trailer}" target="_blank">
-        <img src="${m.poster}" alt="${m.title}">
-      </a>
-      <h3>${m.title}</h3>
-      <p>Genres: ${Array.isArray(m.genres) ? m.genres.join(', ') : 'N/A'}</p>
-      <p>Type: ${m.type || 'N/A'}</p>
-      <p>Language: ${Array.isArray(m.lang) ? m.lang.join(', ') : 'N/A'}</p>
-      <p>Quality: ${Array.isArray(m.quality) ? m.quality.join(', ') : 'N/A'}</p>
-      <p>Updated: ${m.date || 'N/A'}</p>
-      <a href="${m.trailer}" target="_blank" class="watch-btn">▶️ WATCH</a>
-    `;
-
-    if (m.category === 'trending') trendingList.appendChild(card);
-    else recentList.appendChild(card);
-  });
-}
-
-function populateFilters() {
-  const langSet = new Set();
-  const qualitySet = new Set();
-
-  allMovies.forEach(m => {
-    (m.lang || []).forEach(l => langSet.add(l));
-    (m.quality || []).forEach(q => qualitySet.add(q));
-  });
-
-  const langFilter = document.getElementById('lang-filter');
-  const qualityFilter = document.getElementById('quality-filter');
-
-  langFilter.innerHTML = '<option value="">All</option>';
-  qualityFilter.innerHTML = '<option value="">All</option>';
-
-  langSet.forEach(l => {
-    const opt = document.createElement('option');
-    opt.value = l;
-    opt.textContent = l;
-    langFilter.appendChild(opt);
-  });
-
-  qualitySet.forEach(q => {
-    const opt = document.createElement('option');
-    opt.value = q;
-    opt.textContent = q;
-    qualityFilter.appendChild(opt);
+  Object.entries(sections).forEach(([id, category]) => {
+    const container = document.getElementById(`${id}-list`);
+    const filtered = movies.filter(m => m.category === category);
+    filtered.forEach(movie => container.appendChild(createMovieCard(movie)));
   });
 }
 
-function applyFilters() {
-  const searchText = document.getElementById('search-box').value.toLowerCase();
-  const selectedLang = document.getElementById('lang-filter').value;
-  const selectedQuality = document.getElementById('quality-filter').value;
+document.getElementById("search-box").addEventListener("input", e => {
+  const query = e.target.value.toLowerCase();
+  const allContainers = document.querySelectorAll(".movie-grid, .scroll-row, .grid-2");
+  allContainers.forEach(container => container.innerHTML = "");
 
-  const filtered = allMovies.filter(m => {
-    const titleMatch = m.title?.toLowerCase().includes(searchText);
-    const langMatch = !selectedLang || (m.lang || []).includes(selectedLang);
-    const qualityMatch = !selectedQuality || (m.quality || []).includes(selectedQuality);
-    return titleMatch && langMatch && qualityMatch;
-  });
-
-  renderMovies(filtered);
-}
-
-document.getElementById('search-box').addEventListener('input', applyFilters);
-document.getElementById('lang-filter').addEventListener('change', applyFilters);
-document.getElementById('quality-filter').addEventListener('change', applyFilters);
-document.getElementById('theme-toggle').addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-});
-
-// Auto scroll trending section
-setInterval(() => {
-  const trendingList = document.getElementById('trending-list');
-  trendingList.scrollBy({ left: 240, behavior: 'smooth' });
-}, 3000);
-
-loadMovies();
+  const filtered = movies.filter(m =>
+    m.title.to[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/lzh-yi/Web-Fork-/tree/024b3e55587afdf9f05a677613a75f24e3d1803e/03-CSS%E8%BF%9B%E9%98%B6%2F04-%E5%A6%82%E4%BD%95%E8%AE%A9%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%EF%BC%9F.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")
