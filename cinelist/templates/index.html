@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CineList 🎬</title>
-  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
   <header class="site-header">
     <h1 id="site-title">🎬 CineList</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#trending">Trending</a>
+      <a href="#recent">Recently Updated</a>
+    </nav>
+    <div class="filter-bar">
+      <input type="text" id="search-box" placeholder="🔍 Search movies..." />
+      <select id="lang-filter">
+        <option value="">All Languages</option>
+        <option value="English">English</option>
+        <option value="Hindi">Hindi</option>
+        <option value="Bangla">Bangla</option>
+      </select>
+      <select id="quality-filter">
+        <option value="">All Qualities</option>
+        <option value="720p">720p</option>
+        <option value="1080p">1080p</option>
+      </select>
+      <button id="theme-toggle">
     <nav>
       <a href="#">Home</a>
       <a href="#trending">Trending</a>
