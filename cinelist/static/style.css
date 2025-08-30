@@ -50,11 +50,17 @@ input, select, button {
   scroll-snap-type: x mandatory;
   gap: 16px;
   padding: 12px;
-  scrollbar-width: none;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
 }
 
 .scroll-row::-webkit-scrollbar {
-  display: none;
+  height: 6px;
+}
+
+.scroll-row::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
 }
 
 .trending-card {
@@ -81,83 +87,4 @@ input, select, button {
   padding: 15px;
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-}
-
-.poster {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  border-radius: 6px;
-  margin-bottom: 10px;
-}
-
-.watch-btn {
-  background-color: #ff3c3c;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-top: 10px;
-  transition: background 0.3s;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.watch-btn:hover {
-  background-color: #e60000;
-}
-
-.app-buttons {
-  text-align: center;
-  margin: 20px 0;
-}
-
-.app-btn {
-  background-color: #333;
-  color: #fff;
-  padding: 10px 20px;
-  margin: 0 10px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-  display: inline-block;
-}
-
-.app-btn:hover {
-  background-color: #555;
-}
-
-footer {
-  text-align: center;
-  background: #222;
-  color: #fff;
-  padding: 10px;
-  margin-top: 20px;
-}
-
-/* Dark Mode */
-body.dark {
-  background-color: #121212;
-  color: #f0f0f0;
-}
-
-body.dark header {
-  background: linear-gradient(90deg, #333, #555);
-}
-
-body.dark .trending-card,
-body.dark .recent-card {
-  background-color: #1e1e1e;
-  color: #fff;
-}
-
-body.dark input,
-body.dark select,
-body.dark button {
-  background-color: #333;
-  color: #fff;
-  border: 1px solid #666;
-}
+  box-shadow: 0
