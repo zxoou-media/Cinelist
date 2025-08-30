@@ -32,7 +32,7 @@ function renderMovies(movies) {
     recent.appendChild(createMovieCardElement(m));
   });
 
-  // 🔁 Auto-scroll logic
+  // 🔁 Auto-scroll logic for trending
   setTimeout(() => {
     const cards = trending.querySelectorAll('.movie-card');
     if (cards.length === 0) return;
@@ -56,42 +56,50 @@ function createMovieCardElement(m) {
   const card = document.createElement('div');
   card.className = 'movie-card';
 
-  card.innerHTML = `
-    <img src="${m.poster}" alt="${m.title}" class="poster">
-    <h3>${m.title}</h3>
-    <p>Language: ${Array.isArray(m.lang) ? m.lang.join(", ") : m.lang}</p>
-    <p>Quality: ${Array.isArray(m.quality) ? m.quality.join(", ") : m.quality}</p>
-    <p>Updated: ${m.date}</p>
-    <button class="watch-btn">▶️ WATCH</button>
-  `;
-
-  card.querySelector('.watch-btn').addEventListener('click', () => {
+  // Poster image
+  const poster = document.createElement('img');
+  poster.src = m.poster;
+  poster.alt = m.title;
+  poster.className = 'poster';
+  poster.style.cursor = 'pointer';
+  poster.addEventListener('click', () => {
     window.open(m.trailer, '_blank');
   });
+
+  // Title
+  const title = document.createElement('h3');
+  title.textContent = m.title;
+
+  // Language
+  const lang = document.createElement('p');
+  lang.textContent = `Language: ${Array.isArray(m.lang) ? m.lang.join(", ") : m.lang}`;
+
+  // Quality
+  const quality = document.createElement('p');
+  quality.textContent = `Quality: ${Array.isArray(m.quality) ? m.quality.join(", ") : m.quality}`;
+
+  // Date
+  const date = document.createElement('p');
+  date.textContent = `Updated: ${m.date}`;
+
+  // Watch button
+  const watchBtn = document.createElement('button');
+  watchBtn.className = 'watch-btn';
+  watchBtn.textContent = '▶️ WATCH';
+  watchBtn.addEventListener('click', () => {
+    window.open(m.trailer, '_blank');
+  });
+
+  // Assemble card
+  card.appendChild(poster);
+  card.appendChild(title);
+  card.appendChild(lang);
+  card.appendChild(quality);
+  card.appendChild(date);
+  card.appendChild(watchBtn);
 
   return card;
 }
 
-function applyFilters() {
-  const searchText = document.getElementById('search-box').value.toLowerCase();
-  const selectedLang = document.getElementById('lang-filter').value;
-  const selectedQuality = document.getElementById('quality-filter').value;
-
-  const filtered = allMovies.filter(m => {
-    const titleMatch = m.title.toLowerCase().includes(searchText);
-    const langMatch = selectedLang === '' || (Array.isArray(m.lang) ? m.lang.includes(selectedLang) : m.lang === selectedLang);
-    const qualityMatch = selectedQuality === '' || (Array.isArray(m.quality) ? m.quality.includes(selectedQuality) : m.quality === selectedQuality);
-    return titleMatch && langMatch && qualityMatch;
-  });
-
-  renderMovies(filtered);
-}
-
-document.getElementById('search-box').addEventListener('input', applyFilters);
-document.getElementById('lang-filter').addEventListener('change', applyFilters);
-document.getElementById('quality-filter').addEventListener('change', applyFilters);
-document.getElementById('theme-toggle').addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-});
-
+// 🚀 Start loading movies
 loadMovies();
