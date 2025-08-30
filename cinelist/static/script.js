@@ -43,7 +43,7 @@ function createMovieCardElement(m, cardClass) {
     <p>Language: ${Array.isArray(m.lang) ? m.lang.join(", ") : m.lang}</p>
     <p>Quality: ${Array.isArray(m.quality) ? m.quality.join(", ") : m.quality}</p>
     <p>Release: ${m.date || 'N/A'}</p>
-    <a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Trailer</a>
+    <a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Movie</a>
   `;
 
   return card;
