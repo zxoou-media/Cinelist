@@ -17,21 +17,45 @@ async function loadMovies() {
 }
 
 function renderMovies(movies) {
-  const trending = document.getElementById('trending-list');
+  const trendingScroll = document.getElementById('trendingScroll');
   const recent = document.getElementById('recent-list');
-  trending.innerHTML = '';
+  trendingScroll.innerHTML = '';
   recent.innerHTML = '';
 
   const trendingData = movies.filter(m => m.category === 'trending');
   const recentData = movies.filter(m => m.category === 'recent');
 
+  // TRENDING posters (scrollable)
   trendingData.forEach(m => {
-    trending.appendChild(createMovieCardElement(m));
+    const img = document.createElement('img');
+    img.src = m.poster;
+    img.alt = m.title;
+    img.className = 'poster';
+    img.addEventListener('click', () => {
+      window.open(m.trailer, '_blank');
+    });
+    trendingScroll.appendChild(img);
   });
 
+  // RECENT cards
   recentData.forEach(m => {
     recent.appendChild(createMovieCardElement(m));
   });
+
+  // Auto-scroll logic
+  setTimeout(() => {
+    const posters = trendingScroll.querySelectorAll('.poster');
+    let posterWidth = posters[0]?.offsetWidth + 10 || 210;
+    let index = 0;
+
+    setInterval(() => {
+      index++;
+      if (index >= posters.length) {
+        index = 0;
+      }
+      trendingScroll.style.transform = `translateX(-${posterWidth * index}px)`;
+    }, 3000);
+  }, 500);
 }
 
 function createMovieCardElement(m) {
