@@ -1,4 +1,48 @@
-/* TRENDING Section */
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  margin: 20px;
+  text-align: center;
+}
+
+header {
+  background: linear-gradient(90deg, #ff4b2b, #ff416c);
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+input, select, button {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* TRENDING scroll */
 #trending-scroll {
   display: flex;
   overflow-x: auto;
@@ -34,7 +78,7 @@
   margin-bottom: 10px;
 }
 
-/* RECENT Section */
+/* RECENT grid */
 #recent-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -59,17 +103,55 @@
   background-color: #e60000;
 }
 
+/* App Buttons */
+.app-buttons {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.app-btn {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.app-btn:hover {
+  background-color: #555;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  background: #222;
+  color: #fff;
+  padding: 10px;
+  margin-top: 20px;
+}
+
 /* Dark Mode */
 body.dark {
   background-color: #121212;
   color: #f0f0f0;
 }
 
-body.dark .movie-card {
+body.dark header {
+  background: linear-gradient(90deg, #333, #555);
+}
+
+.dark .movie-card {
   background-color: #1e1e1e;
   color: #fff;
 }
 
-body.dark .watch-btn {
-  background-color: #ff6b6b;
+.dark input,
+.dark select,
+.dark button {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #666;
 }
