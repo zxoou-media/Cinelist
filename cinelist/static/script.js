@@ -1,4 +1,3 @@
-<script>
 let allMovies = [];
 
 async function loadMovies() {
@@ -17,43 +16,38 @@ async function loadMovies() {
 }
 
 function renderMovies(movies) {
-  const trendingScroll = document.getElementById('trendingScroll');
+  const trending = document.getElementById('trending-scroll');
   const recent = document.getElementById('recent-list');
-  trendingScroll.innerHTML = '';
+  trending.innerHTML = '';
   recent.innerHTML = '';
 
   const trendingData = movies.filter(m => m.category === 'trending');
   const recentData = movies.filter(m => m.category === 'recent');
 
-  // TRENDING posters (scrollable)
   trendingData.forEach(m => {
-    const img = document.createElement('img');
-    img.src = m.poster;
-    img.alt = m.title;
-    img.className = 'poster';
-    img.addEventListener('click', () => {
-      window.open(m.trailer, '_blank');
-    });
-    trendingScroll.appendChild(img);
+    trending.appendChild(createMovieCardElement(m));
   });
 
-  // RECENT cards
   recentData.forEach(m => {
     recent.appendChild(createMovieCardElement(m));
   });
 
-  // Auto-scroll logic
+  // 🔁 Auto-scroll logic
   setTimeout(() => {
-    const posters = trendingScroll.querySelectorAll('.poster');
-    let posterWidth = posters[0]?.offsetWidth + 10 || 210;
+    const cards = trending.querySelectorAll('.movie-card');
+    if (cards.length === 0) return;
+
     let index = 0;
+    const cardWidth = cards[0].offsetWidth + 16;
 
     setInterval(() => {
+      trending.scrollTo({
+        left: index * cardWidth,
+        behavior: 'smooth'
+      });
+
       index++;
-      if (index >= posters.length) {
-        index = 0;
-      }
-      trendingScroll.style.transform = `translateX(-${posterWidth * index}px)`;
+      if (index >= cards.length) index = 0;
     }, 3000);
   }, 500);
 }
@@ -101,4 +95,3 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
 });
 
 loadMovies();
-</script>
