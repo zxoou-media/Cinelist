@@ -34,7 +34,11 @@
   <main>
     <section id="trending">
       <h2>🔥 TRENDING</h2>
-      <div id="trending-list" class="movie-row"></div>
+      <div class="trending-container">
+        <div class="trending-scroll" id="trendingScroll">
+          <!-- Posters will be injected dynamically -->
+        </div>
+      </div>
     </section>
 
     <div class="app-buttons">
@@ -71,26 +75,48 @@
     }
 
     function renderMovies(movies) {
-      const trending = document.getElementById('trending-list');
+      const trendingScroll = document.getElementById('trendingScroll');
       const recent = document.getElementById('recent-list');
-      trending.innerHTML = '';
+      trendingScroll.innerHTML = '';
       recent.innerHTML = '';
 
       const trendingData = movies.filter(m => m.category === 'trending');
       const recentData = movies.filter(m => m.category === 'recent');
 
       trendingData.forEach(m => {
-        trending.appendChild(createMovieCardElement(m, 'trending-card'));
+        const img = document.createElement('img');
+        img.src = m.poster;
+        img.alt = m.title;
+        img.className = 'poster';
+        img.addEventListener('click', () => {
+          window.open(m.trailer, '_blank');
+        });
+        trendingScroll.appendChild(img);
       });
 
       recentData.forEach(m => {
-        recent.appendChild(createMovieCardElement(m, 'movie-card'));
+        recent.appendChild(createMovieCardElement(m));
       });
+
+      // Auto-scroll logic
+      setTimeout(() => {
+        const posters = trendingScroll.querySelectorAll('.poster');
+        let posterWidth = posters[0]?.offsetWidth + 10 || 210;
+        let index = 0;
+
+        setInterval(() => {
+          index++;
+          if (index >= posters.length) {
+            index = 0;
+          }
+          trendingScroll.style.transform = `translateX(-${posterWidth * index}px)`;
+        }, 3000);
+      }, 500);
     }
 
-    function createMovieCardElement(m, cardClass) {
+    function createMovieCardElement(m) {
       const card = document.createElement('div');
-      card.className = cardClass;
+      card.className = 'movie-card';
 
       card.innerHTML = `
         <img src="${m.poster}" alt="${m.title}" class="poster">
