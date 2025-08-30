@@ -49,4 +49,52 @@ function createMovieCardElement(m, cardClass) {
   return card;
 }
 
-window.addEventListener('DOMContentLoaded', loadMovies);
+function applyFilters() {
+  const searchText = document.getElementById("search-box").value.toLowerCase();
+  const lang = document.getElementById("lang-filter").value;
+  const quality = document.getElementById("quality-filter").value;
+
+  const filtered = allMovies.filter(movie => {
+    const matchesSearch = movie.title.toLowerCase().includes(searchText);
+    const matchesLang = !lang || movie.lang.includes(lang);
+    const matchesQuality = !quality || movie.quality.includes(quality);
+    return matchesSearch && matchesLang && matchesQuality;
+  });
+
+  renderMovies(filtered);
+}
+
+function setupFilterListeners() {
+  document.getElementById('search-box').addEventListener('input', applyFilters);
+  document.getElementById('lang-filter').addEventListener('change', applyFilters);
+  document.getElementById('quality-filter').addEventListener('change', applyFilters);
+}
+
+function setupDarkModeToggle() {
+  const toggleBtn = document.getElementById('theme-toggle');
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+  });
+}
+
+function autoScrollTrending() {
+  const trending = document.getElementById('trending-scroll');
+  let scrollAmount = 0;
+  const scrollStep = 1;
+  const scrollDelay = 20;
+
+  setInterval(() => {
+    scrollAmount += scrollStep;
+    if (scrollAmount >= trending.scrollWidth - trending.clientWidth) {
+      scrollAmount = 0;
+    }
+    trending.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+  }, scrollDelay);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  loadMovies();
+  setupFilterListeners();
+  setupDarkModeToggle();
+  autoScrollTrending();
+});
