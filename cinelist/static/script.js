@@ -42,18 +42,11 @@ function createMovieCardElement(m, cardClass) {
     <h3>${m.title}</h3>
     <p>Language: ${Array.isArray(m.lang) ? m.lang.join(", ") : m.lang}</p>
     <p>Quality: ${Array.isArray(m.quality) ? m.quality.join(", ") : m.quality}</p>
-    <p>Release: ${m.date}</p>
+    <p>Release: ${m.date || 'N/A'}</p>
     <a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Trailer</a>
   `;
 
   return card;
 }
 
-function applyFilters() {
-  const searchText = document.getElementById("search-box").value.toLowerCase();
-  const lang = document.getElementById("lang-filter").value;
-  const quality = document.getElementById("quality-filter").value;
-
-  const filtered = allMovies.filter(movie => {
-    const matchesSearch = movie.title.toLowerCase().includes(searchText);
-    const matchesLang = !lang || movie.lang
+window.addEventListener('DOMContentLoaded', loadMovies);
