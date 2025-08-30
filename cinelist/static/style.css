@@ -3,6 +3,7 @@ body {
   background: #f0f0f0;
   margin: 0;
   padding: 0;
+  transition: background 0.3s, color 0.3s;
 }
 
 h2 {
@@ -101,6 +102,8 @@ input, select, button {
   font-weight: bold;
   margin-top: 10px;
   transition: background 0.3s;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .watch-btn:hover {
