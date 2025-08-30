@@ -38,7 +38,9 @@ function createMovieCardElement(m, cardClass) {
   card.className = cardClass;
 
   card.innerHTML = `
-    <img src="${m.poster}" alt="${m.title}" class="poster" />
+    <a href="${m.trailer}" target="_blank">
+      <img src="${m.poster}" alt="${m.title}" class="poster" />
+    </a>
     <h3>${m.title}</h3>
     <p>Language: ${Array.isArray(m.lang) ? m.lang.join(", ") : m.lang}</p>
     <p>Quality: ${Array.isArray(m.quality) ? m.quality.join(", ") : m.quality}</p>
@@ -56,8 +58,8 @@ function applyFilters() {
 
   const filtered = allMovies.filter(movie => {
     const matchesSearch = movie.title.toLowerCase().includes(searchText);
-    const matchesLang = !lang || movie.lang.includes(lang);
-    const matchesQuality = !quality || movie.quality.includes(quality);
+    const matchesLang = !lang || (Array.isArray(movie.lang) ? movie.lang.includes(lang) : movie.lang === lang);
+    const matchesQuality = !quality || (Array.isArray(movie.quality) ? movie.quality.includes(quality) : movie.quality === quality);
     return matchesSearch && matchesLang && matchesQuality;
   });
 
@@ -79,17 +81,16 @@ function setupDarkModeToggle() {
 
 function autoScrollTrending() {
   const trending = document.getElementById('trending-scroll');
-  let scrollAmount = 0;
-  const scrollStep = 1;
-  const scrollDelay = 20;
+  let index = 0;
 
   setInterval(() => {
-    scrollAmount += scrollStep;
-    if (scrollAmount >= trending.scrollWidth - trending.clientWidth) {
-      scrollAmount = 0;
-    }
-    trending.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-  }, scrollDelay);
+    const cards = trending.querySelectorAll('.trending-card');
+    if (cards.length === 0) return;
+
+    index = (index + 1) % cards.length;
+    const scrollTo = cards[index].offsetLeft;
+    trending.scrollTo({ left: scrollTo, behavior: 'smooth' });
+  }, 3000);
 }
 
 window.addEventListener('DOMContentLoaded', () => {
