@@ -1,85 +1,40 @@
-/* Base Styles */
-body {
-  font-family: Arial, sans-serif;
-  background: #f0f0f0;
-  margin: 0;
-  padding: 0;
-}
-
-h2 {
-  margin: 20px;
-  text-align: center;
-}
-
-/* Header */
-header {
-  background: linear-gradient(90deg, #ff4b2b, #ff416c);
-  color: #fff;
-  padding: 15px;
-  text-align: center;
+/* TRENDING Section */
+#trending-scroll {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  gap: 16px;
+  padding: 12px;
+  scrollbar-width: none;
 }
 
-header nav {
+#trending-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.movie-card {
+  flex: 0 0 calc(50% - 8px);
+  scroll-snap-align: start;
+  box-sizing: border-box;
+  min-width: 220px;
+  max-width: 240px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.movie-card img.poster {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 6px;
   margin-bottom: 10px;
 }
 
-header nav a {
-  color: #fff;
-  margin: 0 10px;
-  text-decoration: none;
-}
-
-.filter-bar {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-input, select, button {
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-/* TRENDING auto-scroll */
-.trending-container {
-  overflow: hidden;
-  width: 100%;
-  position: relative;
-  padding: 12px;
-}
-
-.trending-scroll {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.trending-scroll .poster {
-  min-width: 200px;
-  height: auto;
-  margin-right: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  transition: transform 0.3s;
-}
-
-.trending-scroll .poster:hover {
-  transform: scale(1.05);
-}
-
-@media (max-width: 600px) {
-  .trending-scroll .poster {
-    min-width: 140px;
-  }
-}
-
-/* RECENTLY UPDATED grid */
+/* RECENT Section */
 #recent-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -87,18 +42,34 @@ input, select, button {
   padding: 12px;
 }
 
-/* Movie Card for RECENT */
-.movie-card {
-  background: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-  text-align: center;
+/* Watch Button */
+.watch-btn {
+  background-color: #ff3c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background 0.3s;
 }
 
-.movie-card h3 {
-  margin: 5px 0;
+.watch-btn:hover {
+  background-color: #e60000;
 }
 
-.movie-card img.poster {
-  width
+/* Dark Mode */
+body.dark {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+body.dark .movie-card {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+body.dark .watch-btn {
+  background-color: #ff6b6b;
+}
