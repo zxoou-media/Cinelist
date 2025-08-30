@@ -10,7 +10,6 @@ async function loadMovies() {
 
     allMovies = [...trendingWithCategory, ...recentWithCategory];
     renderMovies(allMovies);
-    startTrendingScroll();
   } catch (err) {
     console.error("Failed to load movies:", err);
   }
@@ -38,19 +37,23 @@ function createMovieCardElement(m, cardClass) {
   const card = document.createElement('div');
   card.className = cardClass;
 
-  const poster = document.createElement('img');
-  poster.src = m.poster;
-  poster.alt = m.title;
-  poster.className = 'poster';
+  card.innerHTML = `
+    <img src="${m.poster}" alt="${m.title}" class="poster" />
+    <h3>${m.title}</h3>
+    <p>Language: ${Array.isArray(m.lang) ? m.lang.join(", ") : m.lang}</p>
+    <p>Quality: ${Array.isArray(m.quality) ? m.quality.join(", ") : m.quality}</p>
+    <p>Release: ${m.date}</p>
+    <a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Trailer</a>
+  `;
 
-  const title = document.createElement('h3');
-  title.textContent = m.title;
+  return card;
+}
 
-  const lang = document.createElement('p');
-  lang.textContent = `Language: ${Array.isArray(m.lang) ? m.lang.join(", ") : m.lang}`;
+function applyFilters() {
+  const searchText = document.getElementById("search-box").value.toLowerCase();
+  const lang = document.getElementById("lang-filter").value;
+  const quality = document.getElementById("quality-filter").value;
 
-  const quality = document.createElement('p');
-  quality.textContent = `Quality: ${Array.isArray(m.quality) ? m.quality.join(", ") : m.quality}`;
-
-  const date = document.createElement('p');
-  date.textContent = `
+  const filtered = allMovies.filter(movie => {
+    const matchesSearch = movie.title.toLowerCase().includes(searchText);
+    const matchesLang = !lang || movie.lang
