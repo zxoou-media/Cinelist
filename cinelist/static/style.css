@@ -43,7 +43,6 @@ input, select, button {
   border: 1px solid #ccc;
 }
 
-/* TRENDING scroll */
 .scroll-row {
   display: flex;
   overflow-x: auto;
@@ -160,7 +159,6 @@ footer {
   margin-top: 20px;
 }
 
-/* Dark Mode */
 body.dark {
   background-color: #121212;
   color: #f0f0f0;
