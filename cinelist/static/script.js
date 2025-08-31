@@ -96,4 +96,20 @@ function autoScrollTrending() {
         const cardLeft = cards[i].offsetLeft;
         const scrollLeft = trending.scrollLeft;
 
-        if (cardLeft >= scroll
+        if (cardLeft >= scrollLeft) {
+          index = i - 1 >= 0 ? i - 1 : 0;
+          break;
+        }
+      }
+    }, 1500);
+  });
+
+  setInterval(scrollToCard, 3000);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  loadMovies();
+  setupFilterListeners();
+  setupDarkModeToggle();
+  autoScrollTrending();
+});
