@@ -27,7 +27,7 @@ function renderMovies(movies) {
 
     card.innerHTML = `
       <a href="${m.trailer}" target="_blank">
-        <img src="/img/${m.poster}" alt="${m.title}" class="poster" />
+        <img src="${m.poster}" alt="${m.title}" class="poster" />
       </a>
       <h3>${m.title}</h3>
       <p>Language: ${Array.isArray(m.lang) ? m.lang.join(', ') : m.lang}</p>
@@ -96,20 +96,4 @@ function autoScrollTrending() {
         const cardLeft = cards[i].offsetLeft;
         const scrollLeft = trending.scrollLeft;
 
-        if (cardLeft >= scrollLeft) {
-          index = i - 1 >= 0 ? i - 1 : 0;
-          break;
-        }
-      }
-    }, 1500);
-  });
-
-  setInterval(scrollToCard, 3000);
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-  loadMovies();
-  setupFilterListeners();
-  setupDarkModeToggle();
-  autoScrollTrending();
-});
+        if (cardLeft >= scroll
