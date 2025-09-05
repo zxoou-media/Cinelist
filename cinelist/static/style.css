@@ -66,7 +66,7 @@ input, select, button {
   flex: 0 0 auto;
   scroll-snap-align: start;
   min-width: 220px;
-  max-width: 240px;
+  max-width: 220px;
   background: #fff;
   padding: 15px;
   border-radius: 8px;
